@@ -65,15 +65,13 @@ export class CartComponent implements OnInit, DoCheck {
   */
   public removeItem(selectedIndex: number): void {
     if (this.cartItemsWithoutDuplicate.length > 0) {
-      this.cartItemsWithoutDuplicate.splice(selectedIndex, 1);
+      const removedCartItemList = this.cartItemsWithoutDuplicate.splice(selectedIndex, 1);
       this.productItemService.cartItemCount(this.cartQuantity - 1);
       this.productItemService.setProductItems(sessionStorageKey, this.cartItemsWithoutDuplicate);
-      this.cartDetailsList.forEach((cartDetails: any, index: number) => {
-        this.cartItemsWithoutDuplicate.forEach(items => {
-          if (cartDetails.partId !== items.cartItem.partId) {
-            this.cartDetailsList.splice(index, 1);
-          }
-        });
+      this.cartDetailsList = this.cartDetailsList.filter((cartDetails: any) => {
+        if (cartDetails.partId !== removedCartItemList[0].cartItem.partId) {
+          return cartDetails;
+        }
       });
     }
   }

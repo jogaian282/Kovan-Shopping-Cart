@@ -1,0 +1,25 @@
+<!-- Begin HTML -->
+<div class="overlay" *ngIf="showLoader"></div>
+<div class="center" *ngIf="showLoader">
+  <mat-spinner diameter="50" strokeWidth="5"></mat-spinner>
+</div>
+<div fxFlex fxLayout="column" class="shopping-items-container">
+  <div fxLayout="row wrap" fxLayoutAlign="start" [ngStyle]="{'margin-top': '20px'}">
+    <div class="card-item" *ngFor="let item of shoppingItemsList" fxFlex="25" fxFlex.md="33" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column">
+      <mat-card>
+        <mat-card-header fxLayoutAlign="center">
+          <mat-card-title>{{ item?.title }}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-lg-image title="{{ item?.title }}" [src]="item?.image2" alt="itemName"/>
+        <mat-divider class="divider"></mat-divider>
+        <div fxLayout="row" fxLayoutAlign="start center" class="price-section">
+          <h4 fxFlex>Price : &#8377; {{ item?.priceValue }}</h4>
+          <mat-icon color="warn" matTooltip="Add to cart" (click)="addToCart(item)">add_circle</mat-icon>
+        </div>
+        <mat-card-content>
+          {{ item.description }} 
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

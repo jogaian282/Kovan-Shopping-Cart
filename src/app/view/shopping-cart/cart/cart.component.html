@@ -1,0 +1,51 @@
+<!-- Begin HTML -->
+<div class="cart-items-container" fxLayout="row wrap">
+  <div fxLayout="row" fxLayoutAlign="center center" class="cart-item-title" *ngIf="cartItemsWithoutDuplicate?.length > 0">
+    <h2> My Products </h2>
+  </div>
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayout.sm="column" fxLayout.md="column" *ngIf="cartItemsWithoutDuplicate?.length > 0">
+    <div fxFlex="65" fxLayout="row wrap">
+      <div class="card-item" fxFlex="50" fxFlex.sm="65" fxlex.md="85" fxFlex.xs="100" *ngFor="let constructedObj of cartItemsWithoutDuplicate; let i = index;">
+        <mat-card fxFlex>
+          <mat-card-header fxLayoutAlign="center">
+            <mat-card-title>{{ constructedObj?.cartItem?.title }}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-lg-image title="{{ constructedObj?.cartItem?.title }}" [src]="constructedObj?.cartItem?.image2" alt="itemName"/>
+          <mat-divider class="divider"></mat-divider>
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px" class="price-section">
+            <h4 fxFlex>Price : &#8377; {{ constructedObj?.cartItem?.priceValue }}</h4>
+            <h4 fxFlex="30" fxLayout="row">
+              Qty:
+              <input type="text" fxFlex="50" #input (input)="calculatePriceByQuantity(constructedObj?.cartItem, $event?.target?.value)" 
+              value="{{ constructedObj?.quantity[constructedObj?.cartItem?.partId] }}" />
+            </h4>
+            <button fxFlex="40px" matTooltip="Remove" (click)="removeItem(i)" mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <mat-card-content>
+            {{ constructedObj?.cartItem?.description }} 
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div fxFlex fxLayoutAlign="start start" class="cart-details-section" fxLayout="column wrap" fxLayoutGap="10px">
+      <h4>Cart Details</h4>
+      <mat-list fxLayout="column wrap">
+        <mat-list-item fxFlex *ngFor="let productItems of cartDetailsList"> 
+          <span class="cart-detail-title">{{ productItems?.title }} </span> &nbsp; &nbsp; <b>&#8377; {{ productItems?.price }} </b>
+        </mat-list-item>
+      </mat-list>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="40px">
+        <button mat-flat-button color="primary" type="button" (click)="addToCheckOut()">CHECKOUT</button>
+        <h4>Total : &#8377; {{ totalAmount | number: '2.2-2' }}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="not-found-msg" *ngIf="cartItemsWithoutDuplicate?.length <= 0">
+    <div fxLayout="column" fxLayoutGap="10px">
+      <h3>No Products Found</h3>
+      <button mat-raised-button color="warn" routerLink="/">Go To Products</button>
+    </div>
+  </div>
+</div>

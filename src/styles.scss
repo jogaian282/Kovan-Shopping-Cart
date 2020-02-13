@@ -1,1 +1,213 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+
+// Override default style.
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 100%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100%;
+    overflow: auto;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.active {
+    box-shadow: 0px 3px seashell;
+}
+
+.header-container {
+    .header-logo {
+        text-decoration: none;
+        img {
+            display: block;
+            width: 180px;
+        }
+    }
+    a {
+        text-decoration: none;
+        color: #fff;
+        cursor: pointer;
+        &:hover {
+            color: #555;
+        }
+    }
+}
+
+.success-snackbar {
+    color: #555 !important;
+    background-color: lightblue !important;
+    font-family: 'Ubuntu', sans-serif;
+    .mat-simple-snackbar-action {
+        color: lightcoral !important;
+    }
+}
+
+.shopping-items-container, .cart-items-container {
+    height: 100%;
+    .card-item {
+        padding: 10px;
+        .mat-card {
+            height: 100%;
+            .mat-card-title {
+                color: rgba(0,0,0,.54);
+            }
+            img {
+                display: block;
+                margin: 0 auto;
+            }
+            .divider {
+                margin: 15px 0px;
+            }
+            .price-section {
+                margin: 25px 0px 15px;
+                h4 {
+                    color: #212529;
+                    font-family: monospace;
+                }
+                .mat-icon {
+                    font-size: 28px;
+                    cursor: pointer;
+                }
+            }
+            .mat-card-content {
+                padding: 5px 0px;
+                text-align: center;
+                font-family: 'Ubuntu', sans-serif;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .shopping-items-container {
+      padding: 60px;
+    }
+    .cart-items-container  {
+        padding: 30px;
+    }
+    .cart-details-section {
+        margin-top: 90px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .cart-details-section {
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .shopping-items-container, .cart-items-container {
+        padding: 30px
+    }
+    .cart-details-section {
+        margin-top: 90px;
+    }
+}
+
+.cart-items-container {
+    .cart-item-title {
+        margin-top: 30px;
+        color: rgba(0,0,0,.54);
+    }
+    .cart-details-section {
+        color: rgba(0,0,0,.54);
+        background: whitesmoke;
+        padding: 16px;
+    }
+}
+
+.not-found-msg {
+    margin: 150px auto;
+    min-height: 100vh;
+}
+
+.overlay{
+    height:100vh;
+    width:100%;
+    background-color:rgba(0, 0, 0, 0.286);
+    z-index:    10;
+    top:        0; 
+    left:       0; 
+    position:   fixed;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+mat-toolbar {
+    height: 64px;
+    position: fixed;
+    z-index: 100;
+    width: 100%  !important;
+    background: cadetblue !important;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.54), 
+    0 1px 1px 0 rgba(0,0,0,.54), 
+    0 1px 3px 0 rgba(0,0,0,.54);
+}
+
+footer {
+
+    background-color: #555;
+    color: #bbb;
+    line-height: 1.5;
+    
+    /* Footer legal */
+    .ft-legal {
+        padding: 0.9375rem 1.875rem;
+        background-color: #333;
+    }
+    .ft-legal-list {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .ft-legal-list li {
+        margin: 0.125rem 0.625rem;
+        white-space: nowrap;
+        a {
+            text-decoration: none;
+            color: #eee;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        span {
+            color: whitesmoke;
+        }
+    }
+    /* one before the last child */
+    .ft-legal-list li:nth-last-child(2) {
+        flex: 1;
+    }
+}
+
